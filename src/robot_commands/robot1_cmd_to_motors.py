@@ -1,12 +1,10 @@
 #! /usr/bin/python3
-
 import rospy
-
-from std_msgs.msg import Float64
-from geometry_msgs.msg import Twist
+from std_msgs.msg import Float64        # moottorille
+from geometry_msgs.msg import Twist     # turtle, tele_op
 
 class Robot_manual_drive:
-    def __init__(self):
+    def __init__(self):                 # luokka objekti luodaan
             
         self.node = rospy.init_node("robot1_manual_drive")
 
@@ -21,12 +19,12 @@ class Robot_manual_drive:
         self.send_zero_velocity_timer = rospy.Timer(rospy.Duration(0.1), self.send_zero_velocity)
 
     def callback (self, data):
-        self.send_velocity(data.linear.x*5 + data.angular.z *2 , data.linear.x*5 + data.angular.z *-2)
+        self.send_velocity(data.linear.x * 5 + data.angular.z * 2 , data.linear.x * 5 + data.angular.z * -2)
         self.last_calback_timer = rospy.Time.now()
 
     def send_zero_velocity(self, event=None):
         if rospy.Time.now().secs > self.last_calback_timer.secs + 0.1:
-            self.send_velocity(0,0)
+            self.send_velocity(0,0) # 0,1 s välein pitää tulla komentoja
 
     def send_velocity(self,vel_l,vel_r):
         self.vel_l_msg.data = vel_l

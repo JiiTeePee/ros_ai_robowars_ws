@@ -1,7 +1,7 @@
 <launch>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <!--<arg name="world_name" value="$(find samk_robowar_world)/world/arena_no_pit.world"/>-->
+    <arg name="world_name" value="$(find samk_robowar_world)/world/arena_no_pit.world"/>
     <arg name="gui" value="true" />
     <arg name="paused" value="false" />
     <arg name="verbose" value="true" />
