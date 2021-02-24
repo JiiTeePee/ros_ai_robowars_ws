@@ -1,0 +1,20 @@
+<launch>
+    <arg name = "image_topic" default= "/robot1/head/image_raw" />
+    <arg name = "storage_folder" default = "$(find image_saver)/pictures" /> 
+
+    <node 
+        name="camera_controller"
+        pkg ="image_view"
+        type = "image_saver"
+        output = "screen">
+        <remap from = "image" to="$(arg image_topic)"/>
+        <param name="save_all_image" value = "false" />
+        <param name = "filename_format" value = "$(arg storage_folder)/image_%04d.png" />
+    </node>
+
+    <node name = "image_saver_caller" pkg = "image_saver" type = "image_saver_caller.py"/>
+
+    <node name="teleop_key" pkg="turtlesim" type="turtle_teleop_key " />
+
+    <node name="robot_1_cmd-to_motors" pkg="robot_commands" type="robot1_cmd_to_motors.py"/>
+</launch>
