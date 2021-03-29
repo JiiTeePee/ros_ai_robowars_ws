@@ -8,7 +8,7 @@
   <author>Toni Aaltonen</author>
   <maintainer email="toni.aaltonen@samk.fi" />
   <license>BSD</license>
-  <!--
+  <!-- versio 1
   <buildtool_depend>catkin</buildtool_depend>
   <depend>roslaunch</depend>
   <depend>robot_state_publisher</depend>
